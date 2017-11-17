@@ -1,0 +1,578 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\CefSharp.WinForms.53.0.1\build\CefSharp.WinForms.props" Condition="Exists('..\packages\CefSharp.WinForms.53.0.1\build\CefSharp.WinForms.props')" />
+  <Import Project="..\packages\CefSharp.Common.53.0.1\build\CefSharp.Common.props" Condition="Exists('..\packages\CefSharp.Common.53.0.1\build\CefSharp.Common.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0ABBDE92-91A4-4654-BA96-BC2F6239F7A9}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>xPDB</RootNamespace>
+    <AssemblyName>xPDB</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;STEAMWORKS_WIN</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;STEAMWORKS_WIN</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ListViewPrinter, Version=2.7.1.31255, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.2.7.1.5\lib\ListViewPrinter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ObjectListView, Version=2.7.1.31255, Culture=neutral, PublicKeyToken=b1c5bf581481bcd4, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.2.7.1.5\lib\ObjectListView.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="QueryMaster, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\QueryMaster.dll</HintPath>
+    </Reference>
+    <Reference Include="SparkleLibrary, Version=2.7.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ObjectListView.2.7.1.5\lib\SparkleLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Encryption\Encryptor.cs" />
+    <Compile Include="GlobalErrorHandler.cs" />
+    <Compile Include="MainWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindow.Designer.cs">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MainWindowExternal.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindowConfigLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainWindowDisplayCounters.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Models\ExternalServices\4chan\Board.cs" />
+    <Compile Include="Models\ExternalServices\4chan\BoardCooldowns.cs" />
+    <Compile Include="Models\ExternalServices\4chan\Boards.cs" />
+    <Compile Include="Models\ExternalServices\4chan\Catalog\Page.cs" />
+    <Compile Include="Models\ExternalServices\4chan\Catalog\Reply.cs" />
+    <Compile Include="Models\ExternalServices\4chan\Catalog\Thread.cs" />
+    <Compile Include="Models\ExternalServices\4chan\Threads\ThreadsResponse.cs" />
+    <Compile Include="Models\ExternalServices\8ch\Board.cs" />
+    <Compile Include="Models\ExternalServices\IPAPI.cs" />
+    <Compile Include="Models\Objects\DACredentials.cs" />
+    <Compile Include="Models\Objects\GFCredentials.cs" />
+    <Compile Include="Models\Storage\Chunk.cs" />
+    <Compile Include="Models\Storage\Config.cs" />
+    <Compile Include="Models\Storage\FileDeclarator.cs" />
+    <Compile Include="Models\Storage\FileType.cs" />
+    <Compile Include="Models\Storage\FileTypesEnum.cs" />
+    <Compile Include="Models\Storage\RememberPreferences.cs" />
+    <Compile Include="Models\Systematization\FamilyDeclarator.cs" />
+    <Compile Include="Models\Systematization\SuperfamilyDeclarator.cs" />
+    <Compile Include="Models\Systematization\TagDeclarator.cs" />
+    <Compile Include="Network\ExternalServices\4chan\Getters.cs" />
+    <Compile Include="Network\ExternalServices\8ch\Getter.cs" />
+    <Compile Include="Network\ExternalServices\DA\Login.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Attributes\DateTimeFormatAttribute.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Attributes\EnumToNumAttribute.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Attributes\ExpandsAttribute.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Attributes\NoFirstLetterEnumAttribute.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Attributes\ParameterAttribute.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Extentions.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Login.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\ArrayOfItems.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\ArrayOfResults.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\BaseObject.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Browse.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\CategoryTree.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Comment.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Comments.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Content.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Converters\NullableIsoDateTimeConverter.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Converters\StringToIntConverter.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Converters\UnixDateTimeConverter.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\DamnResponse.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Deviation.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\DeviationMetadata.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Download.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Fave.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\FeedSettings.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Folder.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Information.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\MltPreview.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\MoveStackResult.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Note.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Pageable.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\PlaceboStatus.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Profile.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\PublishResult.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Siblings.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Space.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\StashDelta.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\StashItem.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\StashMetadata.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\Status.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\StatusPostResponse.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubmitResult.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\Collection.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\CollectionFolder.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\Country.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\FavedUser.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\FeedItem.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\Friend.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\GalleryFolder.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\Image.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\Message.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\MetadataStats.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\MetadataSubmission.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\NotesFolder.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\Notification.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\Poll.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\PollAnswer.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\ProfileFeedItem.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\TagName.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\SubObjects\Watcher.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\User.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\UserData.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Objects\WatchingResponse.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requester.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\CategorytreeRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\DailydeviationsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\HotRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\MoreLikeThisRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\MoreLikeThis\PreviewRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\NewestRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\PopularRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\TagsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\Tags\SearchRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\UndiscoveredRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Browse\User\JournalsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Collections\FaveRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Collections\FolderRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Collections\FoldersRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Collections\UnfaveRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Comments\DeviationRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Comments\Post\DeviationRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Comments\Post\ProfileRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Comments\Post\StatusRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Comments\ProfileRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Comments\SiblingsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Comments\StatusRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Data\CountriesRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Data\PrivacyRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Data\SubmissionRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Data\TermsOfServiceRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Deviation\ContentRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Deviation\DeviationRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Deviation\DownloadRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Deviation\EmbeddedContentRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Deviation\MetadataRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Deviation\WhoFavedRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Feed\HomeRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Feed\Home\BucketRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Feed\NotificationsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Feed\ProfileRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Feed\SettingsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Feed\Settings\UpdateRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Gallery\AllRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Gallery\FolderRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Gallery\FoldersRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Messages\DeleteRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Messages\FeedbackRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Messages\Feedback\StackRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Messages\FeedRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Messages\MentionsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Messages\Mentions\StackRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\DeleteRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\Folders\CreateRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\Folders\ListRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\Folders\RemoveRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\Folders\RenameRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\MarkRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\MoveRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\NoteRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\NotesRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Notes\SendRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\PageableRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Request.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Response.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\DeleteRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\DeltaRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\ItemRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\PublishRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\Publish\CategoryTreeRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\Publish\UserDataRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\SpaceRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\StackRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\Stack\ChangePositionRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\Stack\ContentsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\Stack\MoveRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\Stack\UpdateRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Stash\SubmitRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\DamnTokenRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\FriendsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\Friends\SearchRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\Friends\UnwatchRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\Friends\WatchingRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\Friends\WatchRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\PostStatusRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\ProfileRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\Profile\UpdateRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\StatusesRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\StatusRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\WatchersRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\WhoAmIRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\User\WhoIsRequest.cs" />
+    <Compile Include="Network\ExternalServices\DA\Top\Requests\Utils\PlaceboRequest.cs" />
+    <Compile Include="Network\ExternalServices\IPAPIOperator.cs" />
+    <Compile Include="Network\Net.cs" />
+    <Compile Include="Network\SourceQuery\BinaryReaderExtensions.cs" />
+    <Compile Include="Network\SourceQuery\GameServer.cs" />
+    <Compile Include="Network\SourceQuery\MasterServer.cs" />
+    <Compile Include="Network\SourceQuery\PlayerInfo.cs" />
+    <Compile Include="Network\SourceQuery\ServerInfo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\ChunkOperations.cs" />
+    <Compile Include="Storage\ConfigManager.cs" />
+    <Compile Include="Storage\ConfigManagerGetters.cs" />
+    <Compile Include="Storage\ConfigOperations.cs" />
+    <Compile Include="Storage\FileOperations.cs" />
+    <Compile Include="Utility\DictionaryToTreeNodes.cs" />
+    <Compile Include="Utility\Humanizer.cs" />
+    <Compile Include="Utility\JsonToTreeNode.cs" />
+    <Compile Include="Utility\KeyboardMessageFilter.cs" />
+    <Compile Include="Utility\PropertyCopy.cs" />
+    <Compile Include="Utility\RandomData.cs" />
+    <Compile Include="Utility\SafeCast.cs" />
+    <Compile Include="Utility\SHA256.cs" />
+    <Compile Include="Utility\UISnippets.cs" />
+    <Compile Include="Utility\UnixTimestamp.cs" />
+    <Compile Include="Utility\WindowManager.cs" />
+    <Compile Include="Windows\DirectoryAquisitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\DirectoryAquisitor.Designer.cs">
+      <DependentUpon>DirectoryAquisitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FileAdders\StoreFileAsIs.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FileAdders\StoreFileAsIs.Designer.cs">
+      <DependentUpon>StoreFileAsIs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\FileBrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\FileBrowser.Designer.cs">
+      <DependentUpon>FileBrowser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Helpers\FamilyTreeSelector.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Helpers\FamilyTreeSelector.Designer.cs">
+      <DependentUpon>FamilyTreeSelector.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Helpers\ImageView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Helpers\ImageView.Designer.cs">
+      <DependentUpon>ImageView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Helpers\Tagger.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Helpers\Tagger.Designer.cs">
+      <DependentUpon>Tagger.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Helpers\TreeViewDisplay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Helpers\TreeViewDisplay.Designer.cs">
+      <DependentUpon>TreeViewDisplay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\ImageExplorer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\ImageExplorer.Designer.cs">
+      <DependentUpon>ImageExplorer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Readers\_4ChanReader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Readers\_4ChanReader.Designer.cs">
+      <DependentUpon>_4ChanReader.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\TagsM.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\TagsM.Designer.cs">
+      <DependentUpon>TagsM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Families.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Families.Designer.cs">
+      <DependentUpon>Families.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Superfamilies.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Superfamilies.Designer.cs">
+      <DependentUpon>Superfamilies.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\Controls\PropertyViewer.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\Controls\PropertyViewer.Designer.cs">
+      <DependentUpon>PropertyViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\Controls\ServerBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\Controls\ServerBox.Designer.cs">
+      <DependentUpon>ServerBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\ExampleUsage.cs" />
+    <Compile Include="Windows\Tools\GoFree\GoFree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\GoFree.Designer.cs">
+      <DependentUpon>GoFree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\GoFreeApi.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\CallStructure.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\ExistingMethodsEnum.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\Announcement.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\Applications.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\CategorizedServerGameCount.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\ChartPoint.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\Client.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\ClientQuery.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\CRON.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\FunctionBlock.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\OfflineServerBlock.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\ServerQuery.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\Sessions.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\StatisticsStatistics.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\SteamServicesStatus.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\TicketConvo.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Operation.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\OperationResponse.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\PermissionSet.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\RecruitmentStatusModel.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Response.cs" />
+    <Compile Include="Windows\Tools\GoFree\Models\Methods\ServerModel.cs" />
+    <Compile Include="Windows\Tools\GoFree\Tools\ServerMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\Tools\ServerMonitor.Designer.cs">
+      <DependentUpon>ServerMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\Tools\ServerSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\Tools\ServerSettings.Designer.cs">
+      <DependentUpon>ServerSettings.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\Tools\ServersList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Tools\GoFree\Tools\ServersList.Designer.cs">
+      <DependentUpon>ServersList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\Tools\IPLookup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Windows\Tools\IPLookup.Designer.cs">
+      <DependentUpon>IPLookup.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="MainWindow.resx">
+      <DependentUpon>MainWindow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Windows\DirectoryAquisitor.resx">
+      <DependentUpon>DirectoryAquisitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FileAdders\StoreFileAsIs.resx">
+      <DependentUpon>StoreFileAsIs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\FileBrowser.resx">
+      <DependentUpon>FileBrowser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Helpers\FamilyTreeSelector.resx">
+      <DependentUpon>FamilyTreeSelector.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Helpers\ImageView.resx">
+      <DependentUpon>ImageView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Helpers\Tagger.resx">
+      <DependentUpon>Tagger.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Helpers\TreeViewDisplay.resx">
+      <DependentUpon>TreeViewDisplay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\ImageExplorer.resx">
+      <DependentUpon>ImageExplorer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Readers\_4ChanReader.resx">
+      <DependentUpon>_4ChanReader.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\TagsM.resx">
+      <DependentUpon>TagsM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Families.resx">
+      <DependentUpon>Families.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Superfamilies.resx">
+      <DependentUpon>Superfamilies.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Tools\GoFree\Controls\PropertyViewer.resx">
+      <DependentUpon>PropertyViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Tools\GoFree\Controls\ServerBox.resx">
+      <DependentUpon>ServerBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Tools\GoFree\GoFree.resx">
+      <DependentUpon>GoFree.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Tools\GoFree\Tools\ServerMonitor.resx">
+      <DependentUpon>ServerMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Tools\GoFree\Tools\ServerSettings.resx">
+      <DependentUpon>ServerSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Tools\GoFree\Tools\ServersList.resx">
+      <DependentUpon>ServersList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Windows\Tools\IPLookup.resx">
+      <DependentUpon>IPLookup.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ClassDiagram1.cd" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ajax-loader_new.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4chan_logo_1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\counterstrike.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\css.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\gmod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tf.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\cef.redist.x64.3.2785.1486\build\cef.redist.x64.targets" Condition="Exists('..\packages\cef.redist.x64.3.2785.1486\build\cef.redist.x64.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\cef.redist.x64.3.2785.1486\build\cef.redist.x64.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x64.3.2785.1486\build\cef.redist.x64.targets'))" />
+    <Error Condition="!Exists('..\packages\cef.redist.x86.3.2785.1486\build\cef.redist.x86.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\cef.redist.x86.3.2785.1486\build\cef.redist.x86.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.53.0.1\build\CefSharp.Common.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.53.0.1\build\CefSharp.Common.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.Common.53.0.1\build\CefSharp.Common.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.Common.53.0.1\build\CefSharp.Common.targets'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.53.0.1\build\CefSharp.WinForms.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.53.0.1\build\CefSharp.WinForms.props'))" />
+    <Error Condition="!Exists('..\packages\CefSharp.WinForms.53.0.1\build\CefSharp.WinForms.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\CefSharp.WinForms.53.0.1\build\CefSharp.WinForms.targets'))" />
+  </Target>
+  <Import Project="..\packages\cef.redist.x86.3.2785.1486\build\cef.redist.x86.targets" Condition="Exists('..\packages\cef.redist.x86.3.2785.1486\build\cef.redist.x86.targets')" />
+  <Import Project="..\packages\CefSharp.Common.53.0.1\build\CefSharp.Common.targets" Condition="Exists('..\packages\CefSharp.Common.53.0.1\build\CefSharp.Common.targets')" />
+  <Import Project="..\packages\CefSharp.WinForms.53.0.1\build\CefSharp.WinForms.targets" Condition="Exists('..\packages\CefSharp.WinForms.53.0.1\build\CefSharp.WinForms.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
